@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 // 简单的内存数据存储，用于模拟数据库
-let dataStore = [];
+let dataStore = {};
 
 // 获取所有项目
 router.get("/", function (req, res) {
@@ -23,7 +23,7 @@ router.get("/:id", function (req, res) {
 // 新增项目
 router.post("/", function (req, res) {
   const newItem = {
-    id: dataStore.length + 1, // 简单地使用数组长度作为 ID
+    id: req.body.id,
     data: req.body.data,
   };
   dataStore.push(newItem);
