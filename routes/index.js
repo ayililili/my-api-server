@@ -26,7 +26,7 @@ router.post("/", function (req, res) {
   const data = req.body.data;
 
   // Add item to dataStore with ID as key
-  dataStore[id] = { id, data };
+  dataStore[id] = data;
   res.status(201).json({ id, data });
 });
 
