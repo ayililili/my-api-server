@@ -26,7 +26,7 @@ router.post("/", function (req, res) {
     id: req.body.id,
     data: req.body.data,
   };
-  dataStore.push(newItem);
+  dataStore[id] = data;
   res.status(201).json(newItem);
 });
 
