@@ -1,31 +1,30 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
 // 简单的内存数据存储，用于模拟数据库
 let dataStore = [];
 
 // 获取所有项目
-router.get('/', function (req, res) {
+router.get("/", function (req, res) {
   res.json(dataStore);
 });
 
 // 根据 ID 获取特定项目
-router.get('/:id', function (req, res) {
+router.get("/:id", function (req, res) {
   const id = parseInt(req.params.id);
-  const item = dataStore.find(i => i.id === id);
+  const item = dataStore.find((i) => i.id === id);
   if (item) {
     res.json(item);
   } else {
-    res.status(404).json({ message: 'Item not found' });
+    res.status(404).json({ message: "Item not found" });
   }
 });
 
 // 新增项目
-router.post('/', function (req, res) {
+router.post("/", function (req, res) {
   const newItem = {
     id: dataStore.length + 1, // 简单地使用数组长度作为 ID
-    name: req.body.name,
-    value: req.body.value
+    data: req.body.data,
   };
   dataStore.push(newItem);
   res.status(201).json(newItem);
