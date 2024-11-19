@@ -21,11 +21,11 @@ router.get("/:id", function (req, res) {
 });
 
 // Add a new item
-router.post("/", function (req, res) {
+router.post("/1", function (req, res) {
   const data = req.body.data;
   console.log(data);
   // Add item to dataStore with ID as key
-  dataStore = data;
+  dataStore = { data };
   res.status(201).json({ id, data });
 });
 
@@ -33,7 +33,7 @@ router.post("/2", function (req, res) {
   const data = req.body.data;
 
   // Add item to dataStore with ID as key
-  dataStore[2] = data;
+  dataStore[2] = { data };
   res.status(201).json({ id, data });
 });
 
