@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 // Simple in-memory data storage, simulating a database
-let dataStore = { 1: {}, 2: {}, 3: {} };
+let dataStore = {};
 
 // Get all items
 router.get("/", function (req, res) {
@@ -25,7 +25,7 @@ router.post("/1", function (req, res) {
   const data = req.body.data;
   console.log(data);
   // Add item to dataStore with ID as key
-  dataStore[1] = data;
+  dataStore["1"] = data;
   res.status(201).json({ id, data });
 });
 
