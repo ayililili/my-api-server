@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 // Simple in-memory data storage, simulating a database
-let dataStore = {};
+let dataStore = { 1: {}, 2: {}, 3: {} };
 
 // Get all items
 router.get("/", function (req, res) {
