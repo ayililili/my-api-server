@@ -25,16 +25,16 @@ router.post("/1", function (req, res) {
   const data = req.body.data;
   console.log(data);
   // Add item to dataStore with ID as key
-  dataStore = { data };
-  res.status(201).json({ id, data });
+  dataStore = data;
+  res.status(201).json({ data });
 });
 
 router.post("/2", function (req, res) {
   const data = req.body.data;
 
   // Add item to dataStore with ID as key
-  dataStore[2] = { data };
-  res.status(201).json({ id, data });
+  dataStore[2] = data;
+  res.status(201).json({ data });
 });
 
 // Update an item
