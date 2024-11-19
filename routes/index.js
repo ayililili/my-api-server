@@ -10,9 +10,26 @@ router.get("/", function (req, res) {
 });
 
 // Get a specific item by ID
-router.get("/:id", function (req, res) {
-  const id = parseInt(req.params.id);
-  const item = dataStore[id]; // Access item directly by ID as key
+router.get("/1", function (req, res) {
+  const item = dataStore[1]; // Access item directly by ID as key
+  if (item) {
+    res.json(item);
+  } else {
+    res.status(404).json({ message: "Item not found" });
+  }
+});
+
+router.get("/2", function (req, res) {
+  const item = dataStore[2]; // Access item directly by ID as key
+  if (item) {
+    res.json(item);
+  } else {
+    res.status(404).json({ message: "Item not found" });
+  }
+});
+
+router.get("/3", function (req, res) {
+  const item = dataStore[3]; // Access item directly by ID as key
   if (item) {
     res.json(item);
   } else {
