@@ -23,7 +23,7 @@ router.get("/:id", function (req, res) {
 // Add a new item
 router.post("/1", function (req, res) {
   const data = req.body.data;
-
+  console.log(data);
   // Add item to dataStore with ID as key
   dataStore[1] = data;
   res.status(201).json({ id, data });
