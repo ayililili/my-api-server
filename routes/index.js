@@ -39,27 +39,51 @@ router.get("/3", function (req, res) {
 
 // Add a new item
 router.post("/1", function (req, res) {
-  const data = req.body.data;
-  console.log(data);
-  // Add item to dataStore with ID as key
-  dataStore[1] = data;
-  res.status(201).json({ data });
+  const newData = req.body.data;
+
+  // 如果資料已存在，更新；否則新增
+  if (dataStore[1]) {
+    dataStore[1] = {
+      ...dataStore[1], // 保留原本資料
+      ...newData, // 更新新資料
+    };
+  } else {
+    dataStore[1] = newData;
+  }
+
+  res.status(201).json({ data: dataStore[1] });
 });
 
 router.post("/2", function (req, res) {
-  const data = req.body.data;
+  const newData = req.body.data;
 
-  // Add item to dataStore with ID as key
-  dataStore[2] = data;
-  res.status(201).json({ data });
+  // 如果資料已存在，更新；否則新增
+  if (dataStore[2]) {
+    dataStore[2] = {
+      ...dataStore[2], // 保留原本資料
+      ...newData, // 更新新資料
+    };
+  } else {
+    dataStore[2] = newData;
+  }
+
+  res.status(201).json({ data: dataStore[2] });
 });
 
 router.post("/3", function (req, res) {
-  const data = req.body.data;
+  const newData = req.body.data;
 
-  // Add item to dataStore with ID as key
-  dataStore[3] = data;
-  res.status(201).json({ data });
+  // 如果資料已存在，更新；否則新增
+  if (dataStore[3]) {
+    dataStore[3] = {
+      ...dataStore[3], // 保留原本資料
+      ...newData, // 更新新資料
+    };
+  } else {
+    dataStore[3] = newData;
+  }
+
+  res.status(201).json({ data: dataStore[3] });
 });
 
 // Update an item
