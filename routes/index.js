@@ -10,80 +10,43 @@ router.get("/", function (req, res) {
 });
 
 // Get a specific item by ID
-router.get("/1", function (req, res) {
-  const item = dataStore[1]; // Access item directly by ID as key
-  if (item) {
-    res.json(item);
-  } else {
-    res.status(404).json({ message: "Item not found" });
-  }
-});
+router.get("/:id", function (req, res) {
+  const id = parseInt(req.params.id);
 
-router.get("/2", function (req, res) {
-  const item = dataStore[2]; // Access item directly by ID as key
-  if (item) {
-    res.json(item);
-  } else {
-    res.status(404).json({ message: "Item not found" });
+  // 資料檢查
+  if (!id || isNaN(id)) {
+    return res.status(400).json({ message: "Invalid ID" });
   }
-});
 
-router.get("/3", function (req, res) {
-  const item = dataStore[3]; // Access item directly by ID as key
-  if (item) {
-    res.json(item);
-  } else {
-    res.status(404).json({ message: "Item not found" });
-  }
+  const item = dataStore[id] || []; // Access item directly by ID as key
+  res.json(item);
 });
 
 // Add a new item
-router.post("/1", function (req, res) {
+router.post("/:id", function (req, res) {
+  const id = parseInt(req.params.id);
   const newData = req.body.data;
 
-  // 如果資料已存在，更新；否則新增
-  if (dataStore[1]) {
-    dataStore[1] = {
-      ...dataStore[1], // 保留原本資料
-      ...newData, // 更新新資料
-    };
-  } else {
-    dataStore[1] = newData;
+  // 資料檢查
+  if (!newData || typeof newData !== "object") {
+    return res.status(400).json({ message: "Invalid data format" });
   }
 
-  res.status(201).json({ data: dataStore[1] });
-});
-
-router.post("/2", function (req, res) {
-  const newData = req.body.data;
-
-  // 如果資料已存在，更新；否則新增
-  if (dataStore[2]) {
-    dataStore[2] = {
-      ...dataStore[2], // 保留原本資料
-      ...newData, // 更新新資料
-    };
-  } else {
-    dataStore[2] = newData;
+  if (!id || isNaN(id)) {
+    return res.status(400).json({ message: "Invalid ID" });
   }
 
-  res.status(201).json({ data: dataStore[2] });
-});
-
-router.post("/3", function (req, res) {
-  const newData = req.body.data;
-
   // 如果資料已存在，更新；否則新增
-  if (dataStore[3]) {
-    dataStore[3] = {
-      ...dataStore[3], // 保留原本資料
-      ...newData, // 更新新資料
+  if (dataStore[id]) {
+    dataStore[id] = {
+      ...dataStore[id],
+      ...newData,
     };
   } else {
-    dataStore[3] = newData;
+    dataStore[id] = newData;
   }
 
-  res.status(201).json({ data: dataStore[3] });
+  res.status(201).json({ data: dataStore[id] });
 });
 
 // Update an item
