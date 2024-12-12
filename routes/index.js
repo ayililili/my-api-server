@@ -14,7 +14,7 @@ router.get("/:id", function (req, res) {
   const id = parseInt(req.params.id);
 
   // 資料檢查
-  if (!id || isNaN(id)) {
+  if (isNaN(id)) {
     return res.status(400).json({ message: "Invalid ID" });
   }
 
