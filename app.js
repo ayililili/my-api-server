@@ -7,6 +7,7 @@ const cors = require("cors");
 
 // 引入路由
 const indexRouter = require("./routes/index");
+const ipWhitelistMiddleware = require("./middleware/ipWhitelistMiddleware"); // 引入白名單中間件
 
 const app = express();
 
@@ -23,6 +24,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+// 使用 IP 白名單檢測中間件
+app.use("/api", ipWhitelistMiddleware);
 
 // 使用路由
 app.use("/api", indexRouter);
