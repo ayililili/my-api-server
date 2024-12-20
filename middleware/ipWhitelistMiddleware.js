@@ -1,5 +1,6 @@
 // 定義允許的 IP 白名單
 const allowedIPs = [
+  "::1",
   "1.34.210.47",
   "61.220.175.151",
   "61.220.175.152",
@@ -14,7 +15,7 @@ const ipWhitelistMiddleware = (req, res, next) => {
   const clientIP =
     req.headers["x-forwarded-for"]?.split(",")[0] ||
     req.connection.remoteAddress;
-
+  console.log(clientIP);
   if (allowedIPs.includes(clientIP)) {
     return next(); // 如果 IP 在白名單中，允許訪問
   }
