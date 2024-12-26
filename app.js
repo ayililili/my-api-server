@@ -7,6 +7,7 @@ const cors = require("cors");
 
 // 引入路由
 const indexRouter = require("./routes/index");
+const apiRouter = require("./routes/api");
 const ipWhitelistMiddleware = require("./middleware/ipWhitelistMiddleware"); // 引入白名單中間件
 
 const app = express();
@@ -29,7 +30,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/api", ipWhitelistMiddleware);
 
 // 使用路由
-app.use("/api", indexRouter);
+app.use("/", indexRouter);
+app.use("/api", apiRouter);
 
 // 處理 404 錯誤
 app.use((req, res, next) => {

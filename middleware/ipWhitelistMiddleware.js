@@ -15,7 +15,7 @@ const ipWhitelistMiddleware = (req, res, next) => {
   const clientIP =
     req.headers["x-forwarded-for"]?.split(",")[0] ||
     req.connection.remoteAddress;
-  console.log(clientIP);
+  console.log(`[INFO] [${new Date().toISOString()}] Client IP: ${clientIP}`);
   if (allowedIPs.includes(clientIP)) {
     return next(); // 如果 IP 在白名單中，允許訪問
   }
